@@ -1,12 +1,14 @@
 pipeline {
     agent any
 
+    environment {
+        PATH=/bin/terraform
+    }
+
     stages {
         stage ("terraform init") {
             steps {
-                sh "
-                   PATH=/bin/terraform
-                   terraform init"
+                sh "terraform init"
 
 
             }
