@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install boto3
+      pip:
+        name: boto3
+        state: present
+    - name: Create S3 Bucket
+      s3_bucket:
+        name: jenkins-terraform-remote-state-01
+        state: present
+

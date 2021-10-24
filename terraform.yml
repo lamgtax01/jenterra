@@ -1,0 +1,20 @@
+---
+- hosts:
+  vars:
+    state: present
+    s3_bucket: jenkins-terraform-remote-state-01
+    key: jenkins-terraform-remote-state.tfstate
+    region: us-west-2
+    app_env: dev
+  tasks:
+    -name: Run terraform scripts
+      terraform:
+        project_path: "./"
+        state: "{{ state }}"
+        backend_config: 
+          bucket: "{{s3_bucket}}"
+          key: "{{key}}"
+          region: "{{region}}"
+        variables_files: "{{app_env}}.tfvars"
+        workspace: "{{app_env}}"
+
