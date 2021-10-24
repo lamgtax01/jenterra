@@ -1,5 +1,5 @@
 ---
-- hosts:
+- hosts: localhost
   vars:
     state: present
     s3_bucket: jenkins-terraform-remote-state-01
