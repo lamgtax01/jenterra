@@ -8,7 +8,7 @@ pipeline {
 
         stage ("create s3 bucket") {
             steps {
-                sh: "ansible-playbook s3-bucket.yml"
+                sh "ansible-playbook s3-bucket.yml"
 
             }
         } 
