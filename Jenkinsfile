@@ -6,7 +6,7 @@ pipeline {
 
     stages {
 
-        stage ("terraform init and apply - dev") {
+        stage ("create s3 bucket") {
             steps {
                 script {
                     createS3Bucket('jenkins-terraform-remote-state-01')
