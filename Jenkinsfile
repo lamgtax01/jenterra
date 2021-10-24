@@ -5,6 +5,15 @@ pipeline {
     }
 
     stages {
+
+        stage ("terraform init and apply - dev") {
+            steps {
+                script {
+                    createS3Bucket('jenkins-terraform-remote-state-01')
+
+                }
+            }
+        } 
         stage ("terraform init and apply - dev") {
             steps {
                 sh returnStatus: true, script: 'terraform workspace new dev'
@@ -25,6 +34,10 @@ pipeline {
 def getTerraformPath () {
     def tfHome = tool name: 'terraform-12', type: 'terraform'
     return tfHome
+}
+
+def createS3Bucket(bucketName) {
+  sh returnStatus: true, script: "aws s3 mb ${bucketName} --region=us-west-2"
 }
 
 
